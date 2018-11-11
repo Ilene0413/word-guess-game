@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>word guess game</title>
+  <!-- use bootstrap-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <!-- point to css file-->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+ </head>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+             <div class="header">
+                 <h1>Ice Cream Hangman</h1>
+            </div>
+        </div>
+    </div>
+    <!-- game header - picture -->
+    <div class="row">
+        <div class="col-md-12 media-heading media-heading">
+                <img src="assets/images/icream header.jpg" alt="ice cream">
+
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+            <h2 class="col-md-6" onclick="playGame(playGame)">Press any key to get started!
+            </h2>
+            <div class="col-md-6" onclick="playGame(playGame)">
+             <img src="assets/images/start ice cream game.jpg" alt="ice cream">
+            </div>
+    </div>
+    <div class="row">
+        <p class="col-md-6">Wins:</p>
+        <p class="cold-md-6">place holder for number of wins</p>
+    </div>
+    <div class="row">
+        <p class="col-md-6">Current Word</p>
+        <p class="col-md-6">put dashes for current word</p>
+    </div>
+    <div class="row">
+        <p class="col-md-6">Number of guesses left:</p>
+        <p class="col-md-6">place for number of guesses left</p>
+    </div>
+    <div class="row">
+        <p class="col-md-6">letters guessed</p>
+        <p class="col-md-6">place holder for letters guessed</p>
+    </div>
+ </div>
+<body>
+        <script src="assets/javascript/game.js"></script>
+</body>
+    
+
+</html>
