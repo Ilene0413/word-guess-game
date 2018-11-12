@@ -9,6 +9,7 @@
   <!-- point to css file-->
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
  </head>
+ <body>
 
 <div class="container">
     <div class="row">
@@ -26,12 +27,14 @@
         </div>
     </div>
     <br><br>
-    <div class="row">
-            <h2 class="col-md-6" onclick="playGame(playGame)">Press any key to get started!
+   
+        <div class="row">
+            <h2 class="col-md-6" onclick="playHangman(event)">Press any key to get started!
             </h2>
-            <div class="col-md-6" onclick="playGame(playGame)">
+            <div class="col-md-6">
              <img src="assets/images/start ice cream game.jpg" alt="ice cream">
             </div>
+        </div>
     </div>
     <div class="row">
         <p class="col-md-6">Wins:</p>
@@ -50,9 +53,6 @@
         <p class="col-md-6">place holder for letters guessed</p>
     </div>
  </div>
-<body>
-        <script src="assets/javascript/game.js"></script>
-</body>
-    
-
+ <script src="assets/javascript/game.js"></script>
+ 
 </html>
