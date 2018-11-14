@@ -3,7 +3,6 @@
 // words to guess
 var numWins = 0;
 var guessWords = ["chocolate", "vanilla", "sprinkles", "sundae", "cone", "cookiesandcream", "fudgebrownie", "bananasplit", "hotfudge", "thickshake"];
-
 var numGuessesLeft;
 
 // set up/initialize array with letters that were guessed and counter numLG; maximum number of guesses is 14
@@ -15,7 +14,8 @@ var lettersGuessed = new Array(14);
 // set up current word
 // set up array to hold letters that are guessed and in current word
 var currentWord;
-var hideHangmanWord = new Array(17);
+//var hideHangmanWord = new Array(17);
+var hideHangmanWord = [];
 //hideHangmanWord.fill ("_   ");
 
 console.log("filled letters guessed array" + lettersGuessed);
@@ -30,6 +30,7 @@ var screenHtml;
 var firstPos;
 var lastPos;
 var numLetFind;
+var pictureName;
 
 
 //user starts game and initial screen is set up
@@ -158,6 +159,7 @@ console.log("hide hangmanword letters "+ hideHangmanWord)
 //var firstPos;
 //var lastPos;
 //var numLetFind;
+var pictureName = document.createElement("IMG");
 
 // randomly choose a word from the guessWords array
 // create a holder with the number of letters for guessing letters in random word
@@ -165,26 +167,58 @@ console.log("hide hangmanword letters "+ hideHangmanWord)
   numLetFind = currentWord.length;
   console.log("in initialize game - numLetFind = " + numLetFind);
   console.log("the word length is " + numLetFind);
-  hideHangmanWord = hideHangmanWord.slice(0,numLetFind);
+  
+// initialize number of underscores in hidden word
+    var tempHang = []
+    for (var i=0; i<numLetFind; i++) {
+        tempHang.push ("_   ");
+    }
+    hideHangmanWord = tempHang;
   console.log("initialize hidehangman to number of blanks in wor" + currentWord.length + "  " + hideHangmanWord);
   console.log("the current word is " + currentWord);
 
- }   
- 
+  //put picture on screen
+ // document.body.removeChild(pictureName);
 
+  createPicture(pictureName);
+
+
+
+ }   
 
 //this function updates the screen after each user input
 function updateScreen () {
-//   var pictureName = document.getElementById("myImg").src = "assets/images/start ice cream game.jpg";
+var pictureName;
+    var x = "assets/images/start ice cream game.jpg";
     var screenHtml = 
    "<p> Wins:&nbsp&nbsp" + numWins + "</p>" +
    "<p> Current Word" + "</p>" +
-   "<p>" + hideHangmanWord + "</p>" +
-   "<p> Letters Guessed:" + "</p>" +
-   "<p>" + lettersGuessed + "</p>" +
+   "<p>" + hideHangmanWord.join(" ") + "</p>" +
+   "<p> Letters Guessed" + "</p>" + 
+   "<p>" + lettersGuessed.join(" ") + "</p>" +
    "<p> Number Guesses Remaining: &nbsp&nbsp" + numGuessesLeft + "</p>";
-   "<br>"
+   "<br>";
+ //  createPicture(pictureName);
+   console.log ("this is the picture" + x);
+   console.log("the picture is " + pictureName);
+   "<img src=" + pictureName + "alt=ice cream>";
+//  createPicture(x);
+//   "<p>" + x + "</>";
      
 // Set the inner HTML contents of the #hangman div to the html string
    document.querySelector("#hangman").innerHTML = screenHtml; 
+}
+
+//get picture
+function createPicture(x) {
+       var x = document.createElement("img");
+// //       var y = document.createElement("img");
+        x.setAttribute("src", "assets/images/start ice cream game.jpg");
+//        x.setAttribute("width", "304");
+//        x.setAttribute("height", "228");
+//        x.setAttribute("alt", "ice cream");
+ //       document.body.removeChild;
+        document.body.appendChild(x);
+  //      document.getElementById (x);
+
 }
