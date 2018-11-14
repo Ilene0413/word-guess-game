@@ -1,29 +1,25 @@
 // initial set up
 // number of wins 
-// number of guesses left
 // words to guess
 var numWins = 0;
-var numGuessesLeft = 14;
-var guessWords = ["chocolate", "vanilla", "sprinkles", "sundae", "cone", "cookies and cream", "fudge brownie", "banana split", "hot fudge", "thick Shake"];
+var guessWords = ["chocolate", "vanilla", "sprinkles", "sundae", "cone", "cookiesandcream", "fudgebrownie", "bananasplit", "hotfudge", "thickshake"];
 
-// set up array with letters that were guessed and counter numLG
-//var lettersGuessed = ["a", "bb", "ccc"];
-//var one = "ff";
-//lettersGuessed[0]=one;
-var numLG = 0;
-lettersGuessed = new Array(14);
+var numGuessesLeft;
+
+// set up/initialize array with letters that were guessed and counter numLG; maximum number of guesses is 14
+var numLG;
+var lettersGuessed = new Array(14);
+//lettersGuessed.fill ("_   ");
+
 
 // set up current word
 // set up array to hold letters that are guessed and in current word
 var currentWord;
 var hideHangmanWord = new Array(17);
-hideHangmanWord.fill ("_   ");
+//hideHangmanWord.fill ("_   ");
 
-//set up letters guessed array 
-//set up counter for number of letters guessed
-lettersGuessed.fill ();
-//lettersGuessed = lettersGuessed.join ( " " );
 console.log("filled letters guessed array" + lettersGuessed);
+console.log("hide hangmanword letters "+ hideHangmanWord);
 // set up other variables
 var inLettersUsed;
 var inHideHangman;
@@ -35,25 +31,13 @@ var firstPos;
 var lastPos;
 var numLetFind;
 
-// randomly choose a word from the guessWords array
-// create a holder with the number of letters for guessing letters in random word
-
-  currentWord = guessWords[Math.floor(Math.random()) * guessWords.length];
-  numLetFind = currentWord.length;
-  console.log("the word length is " + numLetFind);
-  hideHangmanWord = hideHangmanWord.slice(0,currentWord.length);
-  console.log("the current word is " + currentWord);
-//console.log("the hidehangman word is " +hideHangmanWord);
-// hideHangmanWord = hideHangmanWord.join( " " );
-//console.log("the new hidehangman word is " +hideHangmanWord);
 
 //user starts game and initial screen is set up
-    document.onkeyup = function(event) {
+    onkeyup = function(event) {
         userGuess = event.key;
         console.log("start game" + userGuess);
-        updateScreen(screenHtml);
-    
-    
+        initializeGame();
+        updateScreen();
 
 //play game
 // user presses key
@@ -68,7 +52,7 @@ var numLetFind;
      console.log("in hide word" + inHideHangman);
 //if used - enter a new letter         
             if (guessInWord || inHideHangman) {
-                updateScreen(screenHtml);
+                updateScreen();
             }
 //if letter has not been guessed
 //decrease number of letters left to guess 
@@ -77,8 +61,6 @@ var numLetFind;
             else {
         console.log("number of letters guessed " + numLG);
         console.log("userguess " + gameGuess);
- //               lettersGuessed[0]= (gameGuess);
- //       console.log("letter guess-0 " + lettersGuessed[0]);
  console.log("numlg is " + numLG);
 
                     lettersGuessed[numLG] = gameGuess;
@@ -98,7 +80,7 @@ var numLetFind;
                         lastPos = currentWord.lastIndexOf(gameGuess);
                     this.console.log("last postion is "+ lastPos);
                         for (var i=firstPos; i <= lastPos; i++) {
-                             if (gameGuess === currentWord[i]) {
+                            if (gameGuess === currentWord[i]) {
                             this.console.log("replace with game guess");
                                 hideHangmanWord[i] = gameGuess;
                             this.console.log("hidehangword is" + hideHangmanWord);
@@ -107,44 +89,92 @@ var numLetFind;
                             }
                         }
                     }
+                    this.console.log("number of letters left to find" + numLetFind);
 //check to see if all the letters were found - if so winner and increase number of wins
                     if (numLetFind === 0) {
+                        this.console.log("in numletfind = 0" + numLetFind);
                         numWins++;
+                        initializeGame();
+                        updateScreen(screenHtml);
                         this.console.log("number of wins = " + numWins);
                         this.console.log("number guesses " + numLG);
+
 //need to determine which picture to put up
                         
 //                     for (var i=0; i<guessWords.length; i++) {
 //                       if (currentWord === guessWords[i]) {
 //                             var pictureName = document.getElementById("myImg").src;
 //                             document.getElementById("hangman").innerHTML = pictureName;
+                    }
+                    else {
+                        // check to see if reached maximum number of guesses
+                        if (numLG > 14) {
+                            initializeGame();
+                            updateScreen(screenHtml);
+                     this.console.log("you lose");
+                        }
+                        else {
+                             updateScreen(screenHtml);
+                        }
+                    }
                          }
-                     }
+
+            }
                     
-                        updateScreen(screenHtml);
 //post picture
 //play again
                     }
-                }
-// check to see if have any more guesses
-                    if (numLG > 14) {
-                    hideHangmanWord === currentWord;
-                            this.console.log("you lose " + hideHangmanWord);
-                    }
                     
                 
-                updateScreen(screenHtml);
             
         
-// this function determines which picture to display
-    
+// this function initializes game
+
+function initializeGame() {
+// number of guesses left
+numGuessesLeft = 14;
+
+// set up/initialize array with letters that were guessed and counter numLG; maximum number of guesses is 14
+numLG = 0;
+//var lettersGuessed = new Array(14);
+lettersGuessed.fill ("_   ");
 
 
-  
+// set up current word
+// set up array to hold letters that are guessed and in current word
+//var currentWord;
+//var hideHangmanWord = new Array(17);
+hideHangmanWord.fill ("_   ");
+
+console.log("filled letters guessed array" + lettersGuessed);
+console.log("hide hangmanword letters "+ hideHangmanWord)
+// set up other variables
+//var inLettersUsed;
+//var inHideHangman;
+//var userGuess;
+//var gameGuess;
+//var guessInWord;
+//var screenHtml;
+//var firstPos;
+//var lastPos;
+//var numLetFind;
+
+// randomly choose a word from the guessWords array
+// create a holder with the number of letters for guessing letters in random word
+  currentWord = guessWords[Math.floor(Math.random() * guessWords.length)];
+  numLetFind = currentWord.length;
+  console.log("in initialize game - numLetFind = " + numLetFind);
+  console.log("the word length is " + numLetFind);
+  hideHangmanWord = hideHangmanWord.slice(0,numLetFind);
+  console.log("initialize hidehangman to number of blanks in wor" + currentWord.length + "  " + hideHangmanWord);
+  console.log("the current word is " + currentWord);
+
+ }   
+ 
 
 
 //this function updates the screen after each user input
-function updateScreen (screenHtml) {
+function updateScreen () {
 //   var pictureName = document.getElementById("myImg").src = "assets/images/start ice cream game.jpg";
     var screenHtml = 
    "<p> Wins:&nbsp&nbsp" + numWins + "</p>" +

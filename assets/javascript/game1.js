@@ -44,7 +44,7 @@ console.log(inLettersUsed);
 }
 
 //  check to see if letter is in used letter array
-       while (inLettersUsed = lettersGuessed.includes(userGuess));
+       while ();
 
 //letter not in used letter array 
 //place letter in used letter array and decrease number of guesses
