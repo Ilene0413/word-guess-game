@@ -8,15 +8,11 @@ var numGuessesLeft;
 // set up/initialize array with letters that were guessed and counter numLG; maximum number of guesses is 14
 var numLG;
 var lettersGuessed = new Array(14);
-//lettersGuessed.fill ("_   ");
-
 
 // set up current word
 // set up array to hold letters that are guessed and in current word
 var currentWord;
-//var hideHangmanWord = new Array(17);
 var hideHangmanWord = [];
-//hideHangmanWord.fill ("_   ");
 
 console.log("filled letters guessed array" + lettersGuessed);
 console.log("hide hangmanword letters "+ hideHangmanWord);
@@ -95,6 +91,9 @@ var pictureName;
                     if (numLetFind === 0) {
                         this.console.log("in numletfind = 0" + numLetFind);
                         numWins++;
+                        var myPicture = "assets/images/chocolate.jpg";
+                        this.console.log("go to change picture");
+                        changePicture(myPicture);
                         initializeGame();
                         updateScreen(screenHtml);
                         this.console.log("number of wins = " + numWins);
@@ -102,10 +101,6 @@ var pictureName;
 
 //need to determine which picture to put up
                         
-//                     for (var i=0; i<guessWords.length; i++) {
-//                       if (currentWord === guessWords[i]) {
-//                             var pictureName = document.getElementById("myImg").src;
-//                             document.getElementById("hangman").innerHTML = pictureName;
                     }
                     else {
                         // check to see if reached maximum number of guesses
@@ -122,8 +117,6 @@ var pictureName;
 
             }
                     
-//post picture
-//play again
                     }
                     
                 
@@ -137,29 +130,15 @@ numGuessesLeft = 14;
 
 // set up/initialize array with letters that were guessed and counter numLG; maximum number of guesses is 14
 numLG = 0;
-//var lettersGuessed = new Array(14);
 lettersGuessed.fill ("_   ");
 
 
 // set up current word
 // set up array to hold letters that are guessed and in current word
-//var currentWord;
-//var hideHangmanWord = new Array(17);
-hideHangmanWord.fill ("_   ");
+//hideHangmanWord.fill ("_   ");
 
 console.log("filled letters guessed array" + lettersGuessed);
 console.log("hide hangmanword letters "+ hideHangmanWord)
-// set up other variables
-//var inLettersUsed;
-//var inHideHangman;
-//var userGuess;
-//var gameGuess;
-//var guessInWord;
-//var screenHtml;
-//var firstPos;
-//var lastPos;
-//var numLetFind;
-var pictureName = document.createElement("IMG");
 
 // randomly choose a word from the guessWords array
 // create a holder with the number of letters for guessing letters in random word
@@ -178,13 +157,17 @@ var pictureName = document.createElement("IMG");
   console.log("the current word is " + currentWord);
 
   //put picture on screen
- // document.body.removeChild(pictureName);
+    changePicture();
 
-  createPicture(pictureName);
+ } 
+ 
+ //this function changes picture
+ function changePicture(myPic) {
+ var x =   document.getElementById(myPic).src;
+ console.log("in change picture " + x);
+ document.getElementById("myPicture").innerHTML = x;
+ }
 
-
-
- }   
 
 //this function updates the screen after each user input
 function updateScreen () {
@@ -199,11 +182,7 @@ var pictureName;
    "<p> Number Guesses Remaining: &nbsp&nbsp" + numGuessesLeft + "</p>";
    "<br>";
  //  createPicture(pictureName);
-   console.log ("this is the picture" + x);
    console.log("the picture is " + pictureName);
-   "<img src=" + pictureName + "alt=ice cream>";
-//  createPicture(x);
-//   "<p>" + x + "</>";
      
 // Set the inner HTML contents of the #hangman div to the html string
    document.querySelector("#hangman").innerHTML = screenHtml; 
