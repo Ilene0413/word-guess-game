@@ -1,8 +1,11 @@
 // initial set up
 // number of wins 
 // words to guess
+// pictures to display
 var numWins = 0;
 var guessWords = ["chocolate", "vanilla", "sprinkles", "sundae", "cone", "cookiesandcream", "fudgebrownie", "bananasplit", "hotfudge", "thickshake"];
+//var pictures = ["banana split.jpg", "brownie.jpg", "chocolate.jpg", "cone.jpg", "cookies and cream.jpg", "hot fudge.jpg", "sprinkles.jpg", "sundae.jpg", "thick shake.jpg", "vanilla.jpg"];
+var picFile = "assets/images/";
 var numGuessesLeft;
 
 // set up/initialize array with letters that were guessed and counter numLG; maximum number of guesses is 14
@@ -26,14 +29,17 @@ var screenHtml;
 var firstPos;
 var lastPos;
 var numLetFind;
-var pictureName;
+var indexPicWord;
+var myPic = "assets/images/start ice cream game.jpg";
+var myPicture;
+
 
 
 //user starts game and initial screen is set up
     onkeyup = function(event) {
         userGuess = event.key;
         console.log("start game" + userGuess);
-        initializeGame();
+        initializeGame(myPic);
         updateScreen();
 
 //play game
@@ -91,10 +97,10 @@ var pictureName;
                     if (numLetFind === 0) {
                         this.console.log("in numletfind = 0" + numLetFind);
                         numWins++;
-                        var myPicture = "assets/images/chocolate.jpg";
-                        this.console.log("go to change picture");
-                        changePicture(myPicture);
-                        initializeGame();
+                        myPicture = picFile.concat(currentWord).concat(".jpg");
+                        this.console.log("go to change picture " + myPicture);
+                    // changePicture(myPicture);
+                        initializeGame(myPicture);
                         updateScreen(screenHtml);
                         this.console.log("number of wins = " + numWins);
                         this.console.log("number guesses " + numLG);
@@ -105,7 +111,8 @@ var pictureName;
                     else {
                         // check to see if reached maximum number of guesses
                         if (numLG > 14) {
-                            initializeGame();
+                            var losePicture = "assets/images/meltingicecream.jpg";
+                            initializeGame(losePicture);
                             updateScreen(screenHtml);
                      this.console.log("you lose");
                         }
@@ -124,7 +131,7 @@ var pictureName;
         
 // this function initializes game
 
-function initializeGame() {
+function initializeGame(myPic) {
 // number of guesses left
 numGuessesLeft = 14;
 
@@ -142,7 +149,8 @@ console.log("hide hangmanword letters "+ hideHangmanWord)
 
 // randomly choose a word from the guessWords array
 // create a holder with the number of letters for guessing letters in random word
-  currentWord = guessWords[Math.floor(Math.random() * guessWords.length)];
+  indexPicWord = Math.floor(Math.random() * guessWords.length);
+  currentWord = guessWords[indexPicWord];
   numLetFind = currentWord.length;
   console.log("in initialize game - numLetFind = " + numLetFind);
   console.log("the word length is " + numLetFind);
@@ -157,16 +165,17 @@ console.log("hide hangmanword letters "+ hideHangmanWord)
   console.log("the current word is " + currentWord);
 
   //put picture on screen
-    changePicture();
-
+ // var myPic;
+ //   changePicture(myPic);
+   changePicture(myPic);
  } 
  
  //this function changes picture
  function changePicture(myPic) {
- var x =   document.getElementById(myPic).src;
- console.log("in change picture " + x);
- document.getElementById("myPicture").innerHTML = x;
+    document.getElementById("myPicture").src = myPic;
+    document.querySelector("#myPicture").innerHTML = myPic;
  }
+
 
 
 //this function updates the screen after each user input
