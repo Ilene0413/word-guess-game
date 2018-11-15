@@ -139,13 +139,15 @@ lettersGuessed.fill ("_   ");
 function updateScreen () {
     var x = "assets/images/start ice cream game.jpg";
     var screenHtml = 
+    "<div id='row'>" + 
    "<p> Wins:&nbsp&nbsp" + numWins + "</p>" +
    "<p> Current Word" + "</p>" +
    "<p>" + hideHangmanWord.join(" ") + "</p>" +
    "<p> Letters Guessed" + "</p>" + 
    "<p>" + lettersGuessed.join(" ") + "</p>" +
-   "<p> Number Guesses Remaining: &nbsp&nbsp" + numGuessesLeft + "</p>";
-   "<br>";
+   "<p id='row'> Number Guesses Remaining: &nbsp&nbsp" + numGuessesLeft + "</p>";
+   "</div>";
+
      
 // Set the inner HTML contents of the #hangman div to the html string
    document.querySelector("#hangman").innerHTML = screenHtml; 

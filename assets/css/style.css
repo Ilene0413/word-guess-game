@@ -17,7 +17,7 @@ body {
     color: #777777;
     background-image: url("../images/icecream-background.png");
     border: #dddddd;
-    width: 960px; 
+    width: 1020px; 
     margin: auto;
   
         }
@@ -50,12 +50,20 @@ body {
     text-align: right;
     font-size: 30px;
     }
+/** row style **/
+#row {
+    color: darkblue;
+    float: right;
+    margin-right: 30px;
+    font-size: 20px;
+}
 
 /** footer style **/
 #footstyle {
-    float:right;
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    right: 50px;
+    margin-left: 650px;
+    margin-right: 10px;
+    width: 75%;
+    height: 50%;
+    max-width: 100px;
+    max-height: 100px;
 }
