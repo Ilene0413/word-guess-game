@@ -7,9 +7,9 @@ var picFile = "assets/images/";
 var numGuessesLeft;
 
 // set up/initialize array with letters that were guessed and counter numLG; maximum number of guesses is 14
-var numLG;
-var lettersGuessed = new Array(14);
-
+var numLG = 0;
+//var lettersGuessed = new Array(14);
+  var lettersGuessed = [];
 // set up current word
 // set up array to hold letters that are guessed and in current word
 var currentWord;
@@ -28,12 +28,14 @@ var numLetFind;
 var indexPicWord;
 var myPic = "assets/images/start ice cream game.jpg";
 var myPicture;
+var i;
 
 //user starts game and initial screen is set up
     document.onkeyup = function(event) {
-        userGuess = event.key.toLowerCase();
+    //    userGuess = event.key.toLowerCase();
         initializeGame(myPic);
-        updateScreen();
+   //     updateScreen(myPic);
+        userGuess = event.key.toLowerCase();
 
 //play game
 // user presses key
@@ -71,26 +73,40 @@ var myPicture;
                             }
                         }
                     }
-//check to see if all the letters were found - if so winner - increase number of wins, change picture
+//check to see if all the letters were found - if so winner - increase number of wins, change picture, play music
 //picture files are named the same as the guess words
                     if (numLetFind === 0) {
                         numWins++;
-                        myPicture = picFile.concat(currentWord).concat(".jpg");
                         var audio = document.createElement("audio");
-                       audio.src = "assets/images/mr.softeemusic.m4a";
-                       audio.play();
+                        audio.src = "assets/images/mr.softeemusic.m4a";
+                        audio.play();
+                        myPicture = picFile.concat(currentWord).concat(".jpg");
+                 //       setTimeout(triggerTimeout, 1000);
+               //  console.log ("now update screen");
+                // updateScreen(screenHtml);
+               //  console.log("set trigger");
+               //  setTimeout(triggerTimeout,1000);
+               //  console.log ("back from trigger");
+                 //       setTimeout(function(){updateScreen(screenHtml)},1000);
+                         changePicture(myPicture)
+                 setTimeout(function(){updateScreen(screenHtml)},2000);
+
+                     //    updateScreen(screenHtml);
                         initializeGame(myPicture);
-                        updateScreen(screenHtml);
+                  //      updateScreen(screenHtml);
+
                     }
                     else {
-                        // check to see if reached maximum number of guesses
-                        if (numLG > 14) {
+                        // check to see if reached maximum number of guesses, if not play lose music, change picture
+             //           if (numLG >= 14) {
+                          if (numGuessesLeft === 0) {
                             var losePicture = "assets/images/meltingicecream.jpg";
                             var audio = document.createElement("audio");
-                       audio.src = "assets/images/youlose.m4a";
-                       audio.play();
+                            audio.src = "assets/images/youlose.m4a";
+                            audio.play();
+                        //    setTimeout(() => initializeGame(losePicture), 1000);
                             initializeGame(losePicture);
-                            updateScreen(screenHtml);
+                   //         updateScreen(screenHtml);
                         }
                         else {
                              updateScreen(screenHtml);
@@ -109,14 +125,9 @@ function initializeGame(myPic) {
 // number of guesses left
 numGuessesLeft = 14;
 
-// set up/initialize array with letters that were guessed and counter numLG; maximum number of guesses is 14
-numLG = 0;
-lettersGuessed.fill ("_   ");
-
 
 // set up current word
 // set up array to hold letters that are guessed and in current word
-//hideHangmanWord.fill ("_   ");
 
 // randomly choose a word from the guessWords array
 // create a holder with the number of letters for guessing letters in random word
@@ -131,13 +142,27 @@ lettersGuessed.fill ("_   ");
     }
     hideHangmanWord = tempHang;
 
+// set array of letters guessed back to empty
+//set up/initialize array with letters that were guessed and counter numLG; maximum number of guesses is 14
+    for (i=0; i<14; i++) {
+    lettersGuessed.pop ();
+    }
+    numLG = 0;
+
+    for (var i=0; i<14; i++) {
+        lettersGuessed.push ("_   ");
+    }
   //put picture on screen
     changePicture(myPic);
+    updateScreen(screenHtml);
  } 
  
  //this function changes picture
  function changePicture(myPic) {
+    document.getElementById("myPicture").width = "300";
+    document.getElementById("myPicture").height = "200";
     document.getElementById("myPicture").src = myPic;
+    
     document.querySelector("#myPicture").innerHTML = myPic;
  }
 
@@ -153,8 +178,12 @@ function updateScreen () {
    "<p>" + lettersGuessed.join(" ") + "</p>" +
    "<p id='row'> Number Guesses Remaining: &nbsp&nbsp" + numGuessesLeft + "</p>";
    "</div>";
-
      
 // Set the inner HTML contents of the #hangman div to the html string
    document.querySelector("#hangman").innerHTML = screenHtml; 
+}  
+
+function triggerTimeout() {
+       initializeGame(myPicture);
+// updateScreen(screenHtml);
 }
