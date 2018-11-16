@@ -76,6 +76,9 @@ var myPicture;
                     if (numLetFind === 0) {
                         numWins++;
                         myPicture = picFile.concat(currentWord).concat(".jpg");
+                        var audio = document.createElement("audio");
+                       audio.src = "assets/images/mr.softeemusic.m4a";
+                       audio.play();
                         initializeGame(myPicture);
                         updateScreen(screenHtml);
                     }
@@ -83,6 +86,9 @@ var myPicture;
                         // check to see if reached maximum number of guesses
                         if (numLG > 14) {
                             var losePicture = "assets/images/meltingicecream.jpg";
+                            var audio = document.createElement("audio");
+                       audio.src = "assets/images/youlose.m4a";
+                       audio.play();
                             initializeGame(losePicture);
                             updateScreen(screenHtml);
                         }
