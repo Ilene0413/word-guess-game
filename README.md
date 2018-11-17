@@ -2,7 +2,7 @@
 This game is a version of the game "Hangman."  All words to guess
 are ice cream related.
 There is a maximum of 10 words.
-A player has a maximum of 14 guesses, which is like creating a hangman with a head, 2 eyes, nose, mouth, body, 2 arms, 2 hands, 2 legs, and 2 feet.
+A player has a maximum of 14 guesses for letters not in the word, which is like creating a hangman with a head, 2 eyes, nose, mouth, body, 2 arms, 2 hands, 2 legs, and 2 feet.
 A player hits any key on the keyboard to start the game.
 The game will select a random word from the word list for the player to guess.
 The game will keep count of the player's wins.
