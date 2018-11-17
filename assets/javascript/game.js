@@ -80,33 +80,20 @@ var i;
                         var audio = document.createElement("audio");
                         audio.src = "assets/images/mr.softeemusic.m4a";
                         audio.play();
+                       
                         myPicture = picFile.concat(currentWord).concat(".jpg");
-                 //       setTimeout(triggerTimeout, 1000);
-               //  console.log ("now update screen");
-                // updateScreen(screenHtml);
-               //  console.log("set trigger");
-               //  setTimeout(triggerTimeout,1000);
-               //  console.log ("back from trigger");
-                 //       setTimeout(function(){updateScreen(screenHtml)},1000);
-                         changePicture(myPicture)
-                 setTimeout(function(){updateScreen(screenHtml)},2000);
-
-                     //    updateScreen(screenHtml);
                         initializeGame(myPicture);
-                  //      updateScreen(screenHtml);
 
                     }
                     else {
                         // check to see if reached maximum number of guesses, if not play lose music, change picture
-             //           if (numLG >= 14) {
+             
                           if (numGuessesLeft === 0) {
                             var losePicture = "assets/images/meltingicecream.jpg";
                             var audio = document.createElement("audio");
                             audio.src = "assets/images/youlose.m4a";
                             audio.play();
-                        //    setTimeout(() => initializeGame(losePicture), 1000);
                             initializeGame(losePicture);
-                   //         updateScreen(screenHtml);
                         }
                         else {
                              updateScreen(screenHtml);
@@ -162,7 +149,6 @@ numGuessesLeft = 14;
     document.getElementById("myPicture").width = "300";
     document.getElementById("myPicture").height = "200";
     document.getElementById("myPicture").src = myPic;
-    
     document.querySelector("#myPicture").innerHTML = myPic;
  }
 
@@ -183,7 +169,3 @@ function updateScreen () {
    document.querySelector("#hangman").innerHTML = screenHtml; 
 }  
 
-function triggerTimeout() {
-       initializeGame(myPicture);
-// updateScreen(screenHtml);
-}
