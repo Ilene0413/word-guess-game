@@ -50,15 +50,7 @@ var i;
             if (guessInWord || inHideHangman) {
                 updateScreen();
             }
-//if letter has not been guessed
-//decrease number of letters left to guess 
-//place userguess in letterguessed array
-//increment number of letters guessed 
-
-            else {
-            //        lettersGuessed[numLG] = gameGuess;
-            //        numGuessesLeft--;
-            //        numLG++;
+            
 // check to see if current word has the user guess and determine where in word letter is
 // only need to check between first and last occurence of letter inclusive
 // if word has letter, replace the value inHideHangman in matching position and decrease number of letters left to find
@@ -74,6 +66,10 @@ var i;
                         }
                     }
                     else {
+//if letter has not been guessed
+//decrease number of letters left to guess 
+//place userguess in letterguessed array
+//increment number of letters guessed 
                         lettersGuessed[numLG] = gameGuess;
                          numGuessesLeft--;
                         numLG++;
@@ -107,7 +103,7 @@ var i;
 
             }
                     
-       }
+
                     
         
 // this function initializes game
