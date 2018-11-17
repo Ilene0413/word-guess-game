@@ -56,9 +56,9 @@ var i;
 //increment number of letters guessed 
 
             else {
-                    lettersGuessed[numLG] = gameGuess;
-                    numGuessesLeft--;
-                    numLG++;
+            //        lettersGuessed[numLG] = gameGuess;
+            //        numGuessesLeft--;
+            //        numLG++;
 // check to see if current word has the user guess and determine where in word letter is
 // only need to check between first and last occurence of letter inclusive
 // if word has letter, replace the value inHideHangman in matching position and decrease number of letters left to find
@@ -73,6 +73,11 @@ var i;
                             }
                         }
                     }
+                    else {
+                        lettersGuessed[numLG] = gameGuess;
+                         numGuessesLeft--;
+                        numLG++;
+                    }
 //check to see if all the letters were found - if so winner - increase number of wins, change picture, play music
 //picture files are named the same as the guess words
                     if (numLetFind === 0) {
@@ -80,7 +85,6 @@ var i;
                         var audio = document.createElement("audio");
                         audio.src = "assets/images/mr.softeemusic.m4a";
                         audio.play();
-                       
                         myPicture = picFile.concat(currentWord).concat(".jpg");
                         initializeGame(myPicture);
 
